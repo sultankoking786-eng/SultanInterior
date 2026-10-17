@@ -1333,14 +1333,52 @@
             });
         }
 
-        const reviewForm = document.getElementById('reviewForm');
-        if (reviewForm) {
-            const reviewStatus = document.getElementById('reviewStatus');
-            reviewForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                submitToFormspree(reviewForm, reviewStatus, 'Thank you for your feedback! Your review has been received for moderation.');
-            });
+const reviewForm = document.getElementById('reviewForm');
+
+if (reviewForm) {
+    const reviewStatus = document.getElementById('reviewStatus');
+
+    reviewForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(reviewForm);
+        const reviewerName = (formData.get('reviewer_name') || '').toString().trim();
+        const rating = Number(formData.get('rating'));
+        const reviewText = (formData.get('review') || '').toString().trim();
+        const consent = formData.get('publication_consent') === 'yes';
+        const submitButton = reviewForm.querySelector('button[type="submit"]');
+
+        if (!reviewerName || !rating || !reviewText || !consent) {
+            reviewStatus.textContent = 'Please complete all fields and give permission to display your review.';
+            return;
         }
+
+        submitButton.disabled = true;
+        reviewStatus.textContent = 'Submitting your review...';
+
+        try {
+            const { error } = await supabaseClient
+                .from('reviews')
+                .insert([{
+                    reviewer_name: reviewerName,
+                    rating: rating,
+                    review: reviewText,
+                    publication_consent: true,
+                    status: 'pending'
+                }]);
+
+            if (error) throw error;
+
+            reviewStatus.textContent = 'Thank you! Your review has been submitted for approval.';
+            reviewForm.reset();
+        } catch (error) {
+            console.error('Supabase review error:', error);
+            reviewStatus.textContent = 'Review could not be submitted. Please try again.';
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
+}
 
         // Newsletter is not connected to a mailing-list service yet; do not falsely claim a subscription.
         const newsletterForm = document.querySelector('.newsletter-form');
