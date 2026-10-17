@@ -1016,7 +1016,7 @@
                 <form id="reviewForm" action="https://formspree.io/f/mljgzkyz" method="POST">
                     <div class="review-form-grid">
                         <div class="form-group">
-                            <input type="text" name="reviewer_name" class="form-control" placeholder="Your name (optional)" autocomplete="name">
+                        <input type="text" name="reviewer_name" class="form-control" placeholder="Your name" autocomplete="name" required>
                         </div>
                         <div class="form-group">
                             <input type="email" name="reviewer_email" class="form-control" placeholder="Email (optional)" autocomplete="email">
@@ -1034,7 +1034,7 @@
                         <textarea name="review" class="form-control" placeholder="Write your feedback" minlength="5" maxlength="1500" required></textarea>
                     </div>
                     <label style="display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;color:var(--text-light);">
-                        <input type="checkbox" name="publication_consent" value="yes">
+                        <input type="checkbox" name="publication_consent" value="yes" required>
                         I give permission for Sultan Interior to display my review publicly.
                     </label>
                     <button type="submit" class="btn">Submit Review</button>
@@ -1386,6 +1386,78 @@
         document.querySelectorAll('.service-card, .testimonial-card, .team-member, .blog-card').forEach(el => {
             el.classList.add('fade-in');
         });
+    </script>
+    
+    <!-- Supabase connection -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://qzhakpbtyactzumfjuiz.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_f_iXEhD0IhXm0r-jP-l5Rg_X0Ho35F7';
+
+        const supabaseClient = window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+        // Submit customer reviews for approval
+        const reviewForm = document.getElementById('reviewForm');
+
+        if (reviewForm) {
+            reviewForm.addEventListener('submit', async function (event) {
+                event.preventDefault();
+
+                const statusMessage = document.getElementById('reviewStatus');
+                const formData = new FormData(reviewForm);
+
+                const reviewerName =
+                    (formData.get('reviewer_name') || '').toString().trim();
+                const rating = Number(formData.get('rating'));
+                const reviewText =
+                    (formData.get('review') || '').toString().trim();
+                const consent = formData.get('publication_consent') === 'yes';
+
+                if (!consent) {
+                    statusMessage.textContent =
+                        'Please give permission to display your review.';
+                    return;
+                }
+
+                if (!reviewerName || !rating || !reviewText) {
+                    statusMessage.textContent =
+                        'Please enter your name, rating and review.';
+                    return;
+                }
+
+                const submitButton =
+                    reviewForm.querySelector('button[type="submit"]');
+                submitButton.disabled = true;
+                statusMessage.textContent = 'Submitting your review...';
+
+                try {
+                    const { error } = await supabaseClient
+                        .from('reviews')
+                        .insert([{
+                            reviewer_name: reviewerName,
+                            rating: rating,
+                            review: reviewText,
+                            publication_consent: true,
+                            status: 'pending'
+                        }]);
+
+                    if (error) throw error;
+
+                    statusMessage.textContent =
+                        'Thank you! Your review has been submitted for approval.';
+                    reviewForm.reset();
+                } catch (error) {
+                    console.error('Review submission error:', error);
+                    statusMessage.textContent =
+                        'Sorry, your review could not be submitted. Please try again later.';
+                } finally {
+                    submitButton.disabled = false;
+                }
+            });
+        }
     </script>
 </body>
 </html>
