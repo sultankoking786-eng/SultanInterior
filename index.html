@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sultan Interior | Luxury Interior Design</title>
     <meta name="description" content="Sultan Interior offers premium interior design services including home interiors, kitchens, offices, and custom designs. Transforming spaces with elegance since 2010.">
+    <!-- GOOGLE ANALYTICS: Replace G-58SCBVY6GL with your GA4 Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-58SCBVY6GL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-58SCBVY6GL');
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -178,6 +186,11 @@
             background-color: var(--primary);
             transform: translateY(-3px);
         }
+        .btn:focus-visible, .floating-btn:focus-visible, .theme-toggle:focus-visible {
+            outline: 2px solid var(--secondary);
+            outline-offset: 4px;
+        }
+        button:disabled { opacity: .65; cursor: wait; }
 
         /* About Section */
         .about {
@@ -478,6 +491,32 @@
         textarea.form-control {
             min-height: 150px;
             resize: vertical;
+        }
+
+        /* Customer review form */
+        .review-form-wrap {
+            max-width: 760px;
+            margin: 45px auto 0;
+            padding: 30px;
+            border: 1px solid rgba(212,175,55,.55);
+            border-radius: 12px;
+            background: rgba(255,255,255,.06);
+        }
+        .review-form-wrap h3 { color: var(--secondary); }
+        .review-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .review-form-wrap .form-control { background: var(--light-bg); color: var(--text-dark); }
+        .review-stars { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 8px; margin: 8px 0 18px; }
+        .review-stars input { position: absolute; opacity: 0; pointer-events: none; }
+        .review-stars label { cursor: pointer; font-size: 30px; color: #999; transition: transform .2s, color .2s; }
+        .review-stars label:hover, .review-stars label:hover ~ label,
+        .review-stars input:checked ~ label { color: #D4AF37; }
+        .review-stars label:active { transform: scale(1.2); }
+        .form-status { margin-top: 14px; min-height: 24px; font-weight: 500; }
+        .form-status.error { color: #c0392b; }
+        .form-status.success { color: #16803c; }
+        @media (max-width: 600px) {
+            .review-form-wrap { padding: 20px; }
+            .review-form-grid { grid-template-columns: 1fr; gap: 0; }
         }
 
         /* Map */
@@ -971,6 +1010,38 @@
                     </div>
                 </div>
             </div>
+            <div class="review-form-wrap">
+                <h3>Share Your Experience</h3>
+                <p>Had an experience with Sultan Interior? Share an honest rating and feedback.</p>
+                <form id="reviewForm" action="https://formspree.io/f/REPLACE_WITH_REVIEW_FORM_ID" method="POST">
+                    <div class="review-form-grid">
+                        <div class="form-group">
+                            <input type="text" name="reviewer_name" class="form-control" placeholder="Your name (optional)" autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="reviewer_email" class="form-control" placeholder="Email (optional)" autocomplete="email">
+                        </div>
+                    </div>
+                    <label for="review-rating">Your rating</label>
+                    <div class="review-stars" aria-label="Choose a rating from 1 to 5">
+                        <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="5 stars" aria-label="5 stars">★</label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars" aria-label="4 stars">★</label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars" aria-label="3 stars">★</label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars" aria-label="2 stars">★</label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star" aria-label="1 star">★</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="review" class="form-control" placeholder="Write your feedback" minlength="5" maxlength="1500" required></textarea>
+                    </div>
+                    <label style="display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;color:var(--text-light);">
+                        <input type="checkbox" name="publication_consent" value="yes">
+                        I give permission for Sultan Interior to display my review publicly.
+                    </label>
+                    <button type="submit" class="btn">Submit Review</button>
+                    <p id="reviewStatus" class="form-status" role="status" aria-live="polite"></p>
+                    <small>Reviews are sent for review and are not published automatically.</small>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -1048,25 +1119,25 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/REPLACE_WITH_CONTACT_FORM_ID" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
+                            <input type="text" name="name" class="form-control" placeholder="Your Name" autocomplete="name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
+                            <input type="email" name="email" class="form-control" placeholder="Your Email" autocomplete="email" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="Your Phone">
+                            <input type="tel" name="phone" class="form-control" placeholder="Your Phone" autocomplete="tel">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                            <textarea name="message" class="form-control" placeholder="Tell us about your project" required></textarea>
                         </div>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
                 </div>
             </div>
             <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.9028687645896!2d77.39439647533563!3d28.63267307566464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cef7a97626d39%3A0x225547924d8d7275!2sSultan%20interior!5e0!3m2!1shi!2sin!4v1758390850236!5m2!1shi!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.9028687645896!2d77.39439647533563!3d28.63267307566464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cef7a97626d39%3A0x225547924d8d7275!2sSultan%20interior!5e0!3m2!1shi!2sin!4v1758390850236!5m2!1shi!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
@@ -1213,24 +1284,70 @@
             }
         });
 
-        // Form Submission
+        // Send a form to Formspree. Replace the placeholder endpoint IDs above first.
+        async function submitToFormspree(form, statusElement, successMessage) {
+            const endpoint = form.getAttribute('action') || '';
+            if (endpoint.includes('REPLACE_WITH_')) {
+                statusElement.textContent = 'Setup needed: connect this form to your Formspree endpoint before using it.';
+                statusElement.className = 'form-status error';
+                return;
+            }
+            const button = form.querySelector('button[type="submit"]');
+            const oldButtonText = button ? button.textContent : '';
+            if (button) { button.disabled = true; button.textContent = 'Sending…'; }
+            statusElement.textContent = '';
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    form.reset();
+                    statusElement.textContent = successMessage;
+                    statusElement.className = 'form-status success';
+                } else {
+                    const data = await response.json().catch(() => ({}));
+                    statusElement.textContent = data.errors?.map(err => err.message).join(' ') || 'Could not send right now. Please try again or contact us on WhatsApp.';
+                    statusElement.className = 'form-status error';
+                }
+            } catch (error) {
+                statusElement.textContent = 'Network error. Please try again or contact us on WhatsApp.';
+                statusElement.className = 'form-status error';
+            } finally {
+                if (button) { button.disabled = false; button.textContent = oldButtonText; }
+            }
+        }
+
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
+            const contactStatus = document.createElement('p');
+            contactStatus.className = 'form-status';
+            contactStatus.id = 'contactStatus';
+            contactStatus.setAttribute('role', 'status');
+            contactStatus.setAttribute('aria-live', 'polite');
+            contactForm.appendChild(contactStatus);
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                // In a real implementation, you would send the form data to a server
-                alert('Thank you for contacting Sultan Interior. We’ll reach out to you soon!');
-                contactForm.reset();
+                submitToFormspree(contactForm, contactStatus, 'Thank you! Your enquiry has been sent to Sultan Interior.');
             });
         }
 
-        // Newsletter Subscription
+        const reviewForm = document.getElementById('reviewForm');
+        if (reviewForm) {
+            const reviewStatus = document.getElementById('reviewStatus');
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitToFormspree(reviewForm, reviewStatus, 'Thank you for your feedback! Your review has been received for moderation.');
+            });
+        }
+
+        // Newsletter is not connected to a mailing-list service yet; do not falsely claim a subscription.
         const newsletterForm = document.querySelector('.newsletter-form');
         if (newsletterForm) {
             newsletterForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('Thank you for subscribing to our newsletter!');
-                newsletterForm.reset();
+                alert('Newsletter subscription is not connected yet. Please contact Sultan Interior directly for updates.');
             });
         }
 
