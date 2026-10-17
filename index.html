@@ -1009,6 +1009,54 @@
                         </div>
                     </div>
                 </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">I chose 'Sultan Interiors' for my home's interior design, and it turned out to be an excellent decision. Their team’s work is highly professional and creative. They paid meticulous attention to even the smallest details, giving the entire home a stunning look that perfectly aligned with my requirements. I sincerely thank the entire team at 'Sultan Interiors' for completing the project on time and for using high-quality materials. Highly recommended!</p>
+                    <div class="testimonial-author">
+                        <div>
+                            <h4>Rajeev</h4>
+                            <p>Residential Client</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Sultan Interiors has given my office/home a fresh and beautiful new look through their interior design work. Their approach is neat, clean, and modern. While being budget-friendly, there has been absolutely no compromise on quality. If you are looking to transform your space, Sultan Interiors is the best choice!"</p>
+                    <div class="testimonial-author">
+                        <div>
+                            <h4>Neeraj Mishra</h4>
+                            <p>Residential& Office Client</p>
+                        </div>
+                    </div>
+                </div>
+                  <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Absolute perfection! The team at Sultan Interiors turned my dream home into reality. Their design sense, color combinations, and use of space are truly outstanding. If you are looking for a stylish and luxurious interior, there is no one better than Sultan Interiors."</p>
+                    <div class="testimonial-author">
+                        <div>
+                            <h4>Vinay Saxena</h4>
+                            <p>Residential Client</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="review-form-wrap">
                 <h3>Share Your Experience</h3>
@@ -1016,7 +1064,7 @@
                 <form id="reviewForm" action="https://formspree.io/f/mljgzkyz" method="POST">
                     <div class="review-form-grid">
                         <div class="form-group">
-                        <input type="text" name="reviewer_name" class="form-control" placeholder="Your name" autocomplete="name" required>
+                            <input type="text" name="reviewer_name" class="form-control" placeholder="Your name (optional)" autocomplete="name">
                         </div>
                         <div class="form-group">
                             <input type="email" name="reviewer_email" class="form-control" placeholder="Email (optional)" autocomplete="email">
@@ -1034,7 +1082,7 @@
                         <textarea name="review" class="form-control" placeholder="Write your feedback" minlength="5" maxlength="1500" required></textarea>
                     </div>
                     <label style="display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;color:var(--text-light);">
-                        <input type="checkbox" name="publication_consent" value="yes" required>
+                        <input type="checkbox" name="publication_consent" value="yes">
                         I give permission for Sultan Interior to display my review publicly.
                     </label>
                     <button type="submit" class="btn">Submit Review</button>
@@ -1333,52 +1381,14 @@
             });
         }
 
-const reviewForm = document.getElementById('reviewForm');
-
-if (reviewForm) {
-    const reviewStatus = document.getElementById('reviewStatus');
-
-    reviewForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-
-        const formData = new FormData(reviewForm);
-        const reviewerName = (formData.get('reviewer_name') || '').toString().trim();
-        const rating = Number(formData.get('rating'));
-        const reviewText = (formData.get('review') || '').toString().trim();
-        const consent = formData.get('publication_consent') === 'yes';
-        const submitButton = reviewForm.querySelector('button[type="submit"]');
-
-        if (!reviewerName || !rating || !reviewText || !consent) {
-            reviewStatus.textContent = 'Please complete all fields and give permission to display your review.';
-            return;
+        const reviewForm = document.getElementById('reviewForm');
+        if (reviewForm) {
+            const reviewStatus = document.getElementById('reviewStatus');
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitToFormspree(reviewForm, reviewStatus, 'Thank you for your feedback! Your review has been received for moderation.');
+            });
         }
-
-        submitButton.disabled = true;
-        reviewStatus.textContent = 'Submitting your review...';
-
-        try {
-            const { error } = await supabaseClient
-                .from('reviews')
-                .insert([{
-                    reviewer_name: reviewerName,
-                    rating: rating,
-                    review: reviewText,
-                    publication_consent: true,
-                    status: 'pending'
-                }]);
-
-            if (error) throw error;
-
-            reviewStatus.textContent = 'Thank you! Your review has been submitted for approval.';
-            reviewForm.reset();
-        } catch (error) {
-            console.error('Supabase review error:', error);
-            reviewStatus.textContent = 'Review could not be submitted. Please try again.';
-        } finally {
-            submitButton.disabled = false;
-        }
-    });
-}
 
         // Newsletter is not connected to a mailing-list service yet; do not falsely claim a subscription.
         const newsletterForm = document.querySelector('.newsletter-form');
@@ -1424,18 +1434,6 @@ if (reviewForm) {
         document.querySelectorAll('.service-card, .testimonial-card, .team-member, .blog-card').forEach(el => {
             el.classList.add('fade-in');
         });
-    </script>
-    
-    <!-- Supabase connection -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
-        const SUPABASE_URL = 'https://qzhakpbtyactzumfjuiz.supabase.co';
-        const SUPABASE_KEY = 'sb_publishable_f_iXEhD0IhXm0r-jP-l5Rg_X0Ho35F7';
-
-        const supabaseClient = window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
     </script>
 </body>
 </html>
