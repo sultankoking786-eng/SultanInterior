@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultan Interior | Luxury Interior Design</title>
+    <meta name="description" content="Sultan Interior offers premium interior design services including home interiors, kitchens, offices, and custom designs. Transforming spaces with elegance since 2010.">
+    <!-- GOOGLE ANALYTICS: Replace G-58SCBVY6GL with your GA4 Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-58SCBVY6GL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-58SCBVY6GL');
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #000;
+            --secondary: #D4AF37;
+            --accent: #fff;
+            --light-bg: #f8f8f8;
+            --dark-bg: #111;
+            --text-dark: #333;
+            --text-light: #fff;
+            --transition: all 0.3s ease;
+        }
+
+        .dark-mode {
+            --primary: #D4AF37;
+            --secondary: #000;
+            --accent: #D4AF37;
+            --light-bg: #222;
+            --dark-bg: #000;
+            --text-dark: #fff;
+            --text-light: #f8f8f8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 20px;
+            margin-left: 20px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--text-light);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        .btn:focus-visible, .floating-btn:focus-visible, .theme-toggle:focus-visible {
+            outline: 2px solid var(--secondary);
+            outline-offset: 4px;
+        }
+        button:disabled { opacity: .65; cursor: wait; }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: var(--light-bg);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 100px 0;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--secondary);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            cursor: pointer;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80%;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: var(--light-bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--accent);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 50px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .stars {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background-color: var(--light-bg);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+
+
+
+
+            
+        }
+
+        /* Blog Section */
+        .blog {
+            padding: 100px 0;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-content {
+            padding: 20px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--light-bg);
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Customer review form */
+        .review-form-wrap {
+            max-width: 760px;
+            margin: 45px auto 0;
+            padding: 30px;
+            border: 1px solid rgba(212,175,55,.55);
+            border-radius: 12px;
+            background: rgba(255,255,255,.06);
+        }
+        .review-form-wrap h3 { color: var(--secondary); }
+        .review-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .review-form-wrap .form-control { background: var(--light-bg); color: var(--text-dark); }
+        .review-stars { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 8px; margin: 8px 0 18px; }
+        .review-stars input { position: absolute; opacity: 0; pointer-events: none; }
+        .review-stars label { cursor: pointer; font-size: 30px; color: #999; transition: transform .2s, color .2s; }
+        .review-stars label:hover, .review-stars label:hover ~ label,
+        .review-stars input:checked ~ label { color: #D4AF37; }
+        .review-stars label:active { transform: scale(1.2); }
+        .form-status { margin-top: 14px; min-height: 24px; font-weight: 500; }
+        .form-status.error { color: #c0392b; }
+        .form-status.success { color: #16803c; }
+        @media (max-width: 600px) {
+            .review-form-wrap { padding: 20px; }
+            .review-form-grid { grid-template-columns: 1fr; gap: 0; }
+        }
+
+        /* Map */
+        .map {
+            margin-top: 50px;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 80px 0;
+            background-color: var(--secondary);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+        }
+
+        .newsletter-btn {
+            background-color: var(--primary);
+            color: var(--text-light);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            padding: 50px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+        }
+
+        .floating-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-top: 15px;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+        }
+
+        .call-btn {
+            background-color: var(--secondary);
+        }
+
+        .floating-btn:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                background-color: var(--dark-bg);
+                width: 100%;
+                height: calc(100vh - 80px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+                color: var(--accent);
+                font-size: 24px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-btn {
+                border-radius: 5px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="Sultan_interior_2.0-removebg-preview.png" class="logo"><img src="Sultan_interior_2.0-removebg-preview.png"  width="100px" height="94px">
+            
+            
+            </a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button class="theme-toggle" id="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Transforming Spaces with Elegance</h1>
+            <p>Premium interior design services for homes and offices</p>
+            <a href="#portfolio" class="btn">Explore Portfolio</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Creating Beautiful Spaces Since 2010</h3>
+                    <p>Sultan Interior is a premium interior design company dedicated to transforming spaces with elegance and functionality. With over a decade of experience, we have established ourselves as leaders in creating stunning interiors that reflect our clients' personalities and lifestyles.</p>
+                    <p>Our team of skilled designers and architects work closely with clients to understand their vision and bring it to life with meticulous attention to detail and craftsmanship.</p>
+                    <p>We believe that great design has the power to enhance lives, and we're committed to delivering exceptional results that exceed expectations.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1752&q=80" alt="Modern Interior Design">
+                </div>
+                <div class="about-video">
+                    <video controls width="350" height="200" poster="sultan videos .mp4" loop preload="none"><source src="sultan videos .mp4" type="video/mp4"></video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Our Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1757&q=80" alt="Bed Room Design">
+                    <div class="portfolio-overlay">
+                        <h3>Modern Bedroom</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80" alt="Bedroom Design">
+                    <div class="portfolio-overlay">
+                        <h3>Luxury Bedroom</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Kitchen Design">
+                    <div class="portfolio-overlay">
+                        <h3>Modular Kitchen</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80" alt="Office Design">
+                    <div class="portfolio-overlay">
+                        <h3>Office Interior</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Drawing Room Design">
+                    <div class="portfolio-overlay">
+                        <h3>Luxury Drawing Room</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1758&q=80" alt="Dining Room Design">
+                    <div class="portfolio-overlay">
+                        <h3>Elegant Dining Room</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="Bed room.jpeg" alt="Luxury Bedroom design">
+                    <div class="portfolio-overlay">
+                        <h3>Luxury Bedroom</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="luxury kitchen.jpeg" alt="Luxury Kitchen design">
+                    <div class="portfolio-overlay">
+                        <h3>Luxury Kitchen</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="crockery.jpeg" alt="Crockery Design">
+                    <div class="portfolio-overlay">
+                        <h3>Crockery Design</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="mandir 1.jpeg" alt="Mandir Design">
+                    <div class="portfolio-overlay">
+                        <h3>Mandir Design</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="drawing area.jpeg" alt="Drawing Area design">
+                    <div class="portfolio-overlay">
+                        <h3>Drawing Area</h3>
+                    </div>
+                </div>
+                 <div class="portfolio-video">
+                    <video controls width="350" height="200" poster="mandir video.mp4" loop preload="none"><source src="mandir video.mp4" type="video/mp4"></video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img src="" alt="" class="lightbox-content" id="lightbox-image">
+    </div>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Home Interior</h3>
+                    <p>Complete interior design solutions for homes, including living rooms, bedrooms, kitchens, and more.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Modular Kitchen</h3>
+                    <p>Custom-designed modular kitchens that combine functionality with aesthetic appeal.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Office Interior</h3>
+                    <p>Professional workspace designs that enhance productivity and reflect your company's brand.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-roller"></i>
+                    </div>
+                    <h3>Renovation</h3>
+                    <p>Transform your existing spaces with our expert renovation and remodeling services.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <h3>Custom Design Work</h3>
+                    <p>Bespoke design solutions tailored to your specific requirements and preferences.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3>Furniture Design</h3>
+                    <p>Custom furniture pieces designed to perfectly fit your space and style.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Testimonials</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Sultan Interior transformed our apartment into a dream home. Their attention to detail and creative solutions exceeded our expectations."</p>
+                    <div class="testimonial-author">
+                        <img src="an its .png" alt="Anita singh">
+                        <div>
+                            <h4>Anita singh</h4>
+                            <p>Residential Client</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The office design created by Sultan Interior has significantly improved our work environment. Our clients are always impressed when they visit."</p>
+                    <div class="testimonial-author">    
+                        <div>
+                            <h4>Ajay Gaganwar</h4>
+                            <p>Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"I'm thrilled with my new kitchen! The team at Sultan Interior was professional, creative, and delivered on time and within budget."</p>
+                    <div class="testimonial-author">
+                        <div>
+                            <h4>Dr. Namita nigam Dutta</h4>
+                            <p>Homeowner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-form-wrap">
+                <h3>Share Your Experience</h3>
+                <p>Had an experience with Sultan Interior? Share an honest rating and feedback.</p>
+                <form id="reviewForm" action="https://formspree.io/f/REPLACE_WITH_REVIEW_FORM_ID" method="POST">
+                    <div class="review-form-grid">
+                        <div class="form-group">
+                            <input type="text" name="reviewer_name" class="form-control" placeholder="Your name (optional)" autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="reviewer_email" class="form-control" placeholder="Email (optional)" autocomplete="email">
+                        </div>
+                    </div>
+                    <label for="review-rating">Your rating</label>
+                    <div class="review-stars" aria-label="Choose a rating from 1 to 5">
+                        <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="5 stars" aria-label="5 stars">★</label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars" aria-label="4 stars">★</label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars" aria-label="3 stars">★</label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars" aria-label="2 stars">★</label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star" aria-label="1 star">★</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="review" class="form-control" placeholder="Write your feedback" minlength="5" maxlength="1500" required></textarea>
+                    </div>
+                    <label style="display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;color:var(--text-light);">
+                        <input type="checkbox" name="publication_consent" value="yes">
+                        I give permission for Sultan Interior to display my review publicly.
+                    </label>
+                    <button type="submit" class="btn">Submit Review</button>
+                    <p id="reviewStatus" class="form-status" role="status" aria-live="polite"></p>
+                    <small>Reviews are sent for review and are not published automatically.</small>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <h2 class="section-title">Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="abbu.jpg" alt="Designer">
+                    <h3>Janmohammad</h3>
+                    <p>Founder & Lead Designer & Project Manager</p>
+                </div>
+                <div class="team-member">
+                    <img src= "Sultan .jpg" alt="Designer">
+                    <h3>Sultan</h3>
+                    <p>Senior Interior Architect & Interior Designer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <div class="container">
+            <h2 class="section-title">Design Blog</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1533090368676-1fd25485db88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80" alt="Design Trends">
+                    </div>
+                    <div class="blog-content">
+                        <h3>2023 Interior Design Trends</h3>
+                        <p>Discover the latest trends in interior design for 2023, from sustainable materials to bold color choices.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Small Spaces">
+                    </div>
+                    <div class="blog-content">
+                        <h3>Maximizing Small Spaces</h3>
+                        <p>Learn how to make the most of small living spaces with clever design solutions and space-saving furniture.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1752&q=80" alt="Color Psychology">
+                    </div>
+                    <div class="blog-content">
+                        <h3>The Psychology of Color in Interior Design</h3>
+                        <p>Explore how different colors affect mood and atmosphere in interior spaces.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>We'd love to hear from you. Reach out to us for inquiries, consultations, or to discuss your next interior design project.</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-map-marker-alt"></i>Chhajarshi colony sector (63) Noida, nearby. Vishwakarma Chowk, Uttar Pardesh(201307) </p>
+                        <p><i class="fas fa-phone"></i> +91 9891113973, +91 9911026119<br>+91 9457079743, +91 9354477676 </p>
+                        <p><i class="fas fa-envelope"></i>sultankoking786@gmail.com</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM, Sat: 9AM-6PM</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/REPLACE_WITH_CONTACT_FORM_ID" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Your Name" autocomplete="name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control" placeholder="Your Email" autocomplete="email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" class="form-control" placeholder="Your Phone" autocomplete="tel">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" class="form-control" placeholder="Tell us about your project" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.9028687645896!2d77.39439647533563!3d28.63267307566464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cef7a97626d39%3A0x225547924d8d7275!2sSultan%20interior!5e0!3m2!1shi!2sin!4v1758390850236!5m2!1shi!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Stay updated with our latest projects, design tips, and exclusive offers.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">Sultan Interior</div>
+                    <p>Transforming spaces with elegance and functionality. Premium interior design services for residential and commercial projects.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1C6to3yXPN/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/sazu_pardhan_ji?igsh=OHoyanJxMnFybGdv"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Home Interior</a></li>
+                        <li><a href="#">Modular Kitchen</a></li>
+                        <li><a href="#">Office Interior</a></li>
+                        <li><a href="#">Renovation</a></li>
+                        <li><a href="#">Custom Design</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Chhajarshi colony sector (63) Noida, nearby. Vishwakarma Chowk, Uttar Pardesh(201307)</li>
+                        <li><i class="fas fa-phone"></i>+91 9891113973, +91 9911026119<br>+91 9457079743, +91 9354477676</li>
+                        <li><i class="fas fa-envelope"></i> sultankoking786@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2022 Sultan Interior. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/+919911026119" class="floating-btn whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+919891113973" class="floating-btn call-btn">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
+
+    <script>
+        // Sticky Header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Lightbox functionality
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').src;
+                lightboxImage.src = imgSrc;
+                lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Send a form to Formspree. Replace the placeholder endpoint IDs above first.
+        async function submitToFormspree(form, statusElement, successMessage) {
+            const endpoint = form.getAttribute('action') || '';
+            if (endpoint.includes('REPLACE_WITH_')) {
+                statusElement.textContent = 'Setup needed: connect this form to your Formspree endpoint before using it.';
+                statusElement.className = 'form-status error';
+                return;
+            }
+            const button = form.querySelector('button[type="submit"]');
+            const oldButtonText = button ? button.textContent : '';
+            if (button) { button.disabled = true; button.textContent = 'Sending…'; }
+            statusElement.textContent = '';
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    form.reset();
+                    statusElement.textContent = successMessage;
+                    statusElement.className = 'form-status success';
+                } else {
+                    const data = await response.json().catch(() => ({}));
+                    statusElement.textContent = data.errors?.map(err => err.message).join(' ') || 'Could not send right now. Please try again or contact us on WhatsApp.';
+                    statusElement.className = 'form-status error';
+                }
+            } catch (error) {
+                statusElement.textContent = 'Network error. Please try again or contact us on WhatsApp.';
+                statusElement.className = 'form-status error';
+            } finally {
+                if (button) { button.disabled = false; button.textContent = oldButtonText; }
+            }
+        }
+
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            const contactStatus = document.createElement('p');
+            contactStatus.className = 'form-status';
+            contactStatus.id = 'contactStatus';
+            contactStatus.setAttribute('role', 'status');
+            contactStatus.setAttribute('aria-live', 'polite');
+            contactForm.appendChild(contactStatus);
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitToFormspree(contactForm, contactStatus, 'Thank you! Your enquiry has been sent to Sultan Interior.');
+            });
+        }
+
+        const reviewForm = document.getElementById('reviewForm');
+        if (reviewForm) {
+            const reviewStatus = document.getElementById('reviewStatus');
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitToFormspree(reviewForm, reviewStatus, 'Thank you for your feedback! Your review has been received for moderation.');
+            });
+        }
+
+        // Newsletter is not connected to a mailing-list service yet; do not falsely claim a subscription.
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Newsletter subscription is not connected yet. Please contact Sultan Interior directly for updates.');
+            });
+        }
+
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                const icon = themeToggle.querySelector('i');
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+        }
+
+        // Animation on Scroll
+        function checkScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                if (elementPosition < screenPosition) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+
+        // Initialize animations
+        document.querySelectorAll('.service-card, .testimonial-card, .team-member, .blog-card').forEach(el => {
+            el.classList.add('fade-in');
+        });
+    </script>
+</body>
+</html>
